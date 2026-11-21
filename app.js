@@ -44,7 +44,7 @@ function ui(){if(!$('#bar'))return;const T=tot(),c=pos();$('#bar').value=T?c/T*1
 document.querySelectorAll('#story span').forEach((e,i)=>e.classList.toggle('cur',i===P.k&&P.on&&!P.au))}
 function say(){speechSynthesis.cancel();if(P.k>=P.s.length)return endP();const tk=++P.tok,u=new SpeechSynthesisUtterance(P.s[P.k]);u.lang=LANGS[L];u.rate=P.rate;
 const v=speechSynthesis.getVoices().find(v=>v.lang.replace('_','-').toLowerCase().startsWith(L));if(v)u.voice=v;else if(P.k===0||!P.warned){toast(t('novoice'));P.warned=1}
-u.onend=()=>{if(P.on&&tk===P.tok){P.k++;ui();say()}};u.onerror=()=>{};speechSynthesis.speak(u);ui()}
+u.onend=()=>{if(P.on&&tk===P.tok){P.k++;ui();say()}};u.onerror=e=>{if(P.on&&tk===P.tok&&e.error!=='canceled'&&e.error!=='interrupted'){P.on=false;ui();toast(t('novoice'))}};setTimeout(()=>{if(tk===P.tok)speechSynthesis.speak(u)},120);ui()}
 function playP(){P.on=true;P.au?P.au.play():say();ui()}
 function pauseP(){P.on=false;P.tok++;P.au?P.au.pause():speechSynthesis.cancel();ui()}
 function stopP(){P.on=false;P.tok++;if(P.au){P.au.pause();P.au=null}if(window.speechSynthesis)speechSynthesis.cancel();clearTimeout(P.tm)}
