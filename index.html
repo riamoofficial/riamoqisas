@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Riamo Qisas</title>
+<meta name="theme-color" content="#2d2373">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 512 512"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d2373"/><stop offset="1" stop-color="#7f74d6"/></linearGradient></defs><rect width="512" height="512" rx="112" fill="url(#hg)"/><path d="M300 90a85 85 0 1 0 0 125a68 68 0 1 1 0-125z" fill="#ffd86b"/><path d="M256 290q-62-42-136-20v118q74-22 136 20z" fill="#fff"/><path d="M256 290q62-42 136-20v118q-74-22-136 20z" fill="#d6d9ff"/></svg>
+    <span>Riamo Qisas</span>
+  </div>
+  <select id="lang" aria-label="Language">
+    <option value="ar">العربية</option><option value="fr">Français</option><option value="en">English</option>
+  </select>
+</header>
+<main id="app"></main>
+<nav id="nav"></nav>
+<div id="pl" role="dialog"></div>
+<div id="toast"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));</script>
+</body>
+</html>
